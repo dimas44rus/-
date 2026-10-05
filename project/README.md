@@ -4,10 +4,7 @@
 Работает полностью в браузере, без сервера и регистрации. Все данные
 хранятся локально на устройстве пользователя.
 
-![Версия](https://img.shields.io/badge/version-2.0-blue)
-![HTML5](https://img.shields.io/badge/HTML-5-orange)
-![CSS3](https://img.shields.io/badge/CSS-3-blue)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+**Версия:** 2.0 · **Стек:** HTML5 · CSS3 · JavaScript (ES6+)
 
 ---
 
@@ -38,29 +35,6 @@
 - 📤 Экспорт и 📥 импорт задач в формате JSON
 - ⌨️ Горячие клавиши: `/` — поиск, `Esc` — отмена редактирования
 - 📱 Адаптивный интерфейс для телефонов и планшетов
-
----
-
-## 🖥 Демонстрация
-
-Откройте `index.html` в браузере — и всё заработает. Сервер не нужен.
-
-### Скриншоты
-
-> Добавьте сюда свои скриншоты после запуска. Пример структуры:
->
-> ```
-> docs/
-> ├── screenshot-light.png
-> ├── screenshot-dark.png
-> └── screenshot-mobile.png
-> ```
->
-> ```markdown
-> | Светлая тема | Тёмная тема |
-> |---|---|
-> | ![light](docs/screenshot-light.png) | ![dark](docs/screenshot-dark.png) |
-> ```
 
 ---
 
