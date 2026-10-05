@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Менеджер учебных задач</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <div class="app__title-row">
+        <h1>📚 Менеджер учебных задач</h1>
+        <button class="theme-toggle" id="themeToggle" title="Переключить тему" aria-label="Переключить тему">🌙</button>
+      </div>
+      <p class="app__subtitle">Планируй, выполняй, отслеживай прогресс</p>
+    </header>
+
+    <!-- Статистика -->
+    <section class="stats" aria-label="Статистика задач">
+      <div class="stats__card">
+        <span class="stats__value" id="statTotal">0</span>
+        <span class="stats__label">Всего</span>
+      </div>
+      <div class="stats__card stats__card--done">
+        <span class="stats__value" id="statDone">0</span>
+        <span class="stats__label">Выполнено</span>
+      </div>
+      <div class="stats__card stats__card--progress">
+        <span class="stats__value" id="statActive">0</span>
+        <span class="stats__label">В процессе</span>
+      </div>
+    </section>
+
+    <!-- Прогресс-бар -->
+    <div class="progress" aria-hidden="true">
+      <div class="progress__bar" id="progressBar"></div>
+    </div>
+
+    <!-- Форма добавления / редактирования -->
+    <section class="panel">
+      <h2 class="panel__title" id="formTitle">Новая задача</h2>
+      <form id="taskForm" class="form" novalidate>
+        <input type="hidden" id="taskId" />
+
+        <div class="form__row">
+          <label class="form__label" for="title">Название *</label>
+          <input
+            type="text"
+            id="title"
+            class="form__input"
+            placeholder="Например: подготовиться к контрольной"
+            maxlength="80"
+            required
+          />
+          <span class="form__error" id="titleError"></span>
+        </div>
+
+        <div class="form__row">
+          <label class="form__label" for="description">Описание</label>
+          <textarea
+            id="description"
+            class="form__input form__input--textarea"
+            placeholder="Кратко опишите задачу"
+            maxlength="300"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form__grid">
+          <div class="form__row">
+            <label class="form__label" for="priority">Приоритет</label>
+            <select id="priority" class="form__input">
+              <option value="low">Низкий</option>
+              <option value="medium" selected>Средний</option>
+              <option value="high">Высокий</option>
+            </select>
+          </div>
+
+          <div class="form__row">
+            <label class="form__label" for="dueDate">Срок выполнения</label>
+            <input type="date" id="dueDate" class="form__input" />
+          </div>
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary" id="submitBtn">
+            Добавить задачу
+          </button>
+          <button type="button" class="btn btn--ghost" id="cancelEditBtn" hidden>
+            Отмена
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Поиск, фильтры и сортировка -->
+    <section class="toolbar">
+      <div class="toolbar__row">
+        <input
+          type="text"
+          id="searchInput"
+          class="form__input form__input--search"
+          placeholder="🔍 Поиск по названию и описанию"
+          maxlength="80"
+        />
+      </div>
+
+      <div class="toolbar__row toolbar__row--split">
+        <div class="filters" role="group" aria-label="Фильтр задач">
+          <button class="chip is-active" data-filter="all">Все</button>
+          <button class="chip" data-filter="active">Активные</button>
+          <button class="chip" data-filter="done">Выполненные</button>
+          <button class="chip" data-filter="high">Высокий</button>
+        </div>
+
+        <div class="sort">
+          <label class="sort__label" for="sortSelect">Сортировка:</label>
+          <select id="sortSelect" class="form__input form__input--small">
+            <option value="created">По добавлению</option>
+            <option value="dueDate">По сроку</option>
+            <option value="priority">По приоритету</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Список задач -->
+    <section class="tasks">
+      <ul id="taskList" class="task-list"></ul>
+      <p class="empty" id="emptyState" hidden>Пока нет задач — добавьте первую 👆</p>
+    </section>
+
+    <!-- Действия с хранилищем -->
+    <section class="footer-actions">
+      <button class="btn btn--ghost" id="clearDoneBtn">🧹 Очистить выполненные</button>
+      <button class="btn btn--ghost" id="exportBtn">📤 Экспорт в JSON</button>
+      <label class="btn btn--ghost" for="importFile">
+        📥 Импорт из JSON
+        <input type="file" id="importFile" accept="application/json,.json" hidden />
+      </label>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
